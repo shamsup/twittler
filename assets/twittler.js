@@ -103,8 +103,9 @@ $(document).ready(function(){
       $newTweet.append($header, $message, $timestamp);
       $tweetArea.prepend($newTweet);
       ODate.init($newTweet[0]);
-      $newTweet.slideDown(200);
     });
+
+    $('.tweet', $tweetArea).slideDown(200);
   };
   var getNewTweets = function(){
     var latest = streams.home.slice(lastUpdatedIndex+1);
