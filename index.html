@@ -1,27 +1,37 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <script src="jquery.js"></script>
-    <script src="data_generator.js"></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="assets/twittler.css" type="text/css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fira+Sans:400,500" type="text/css">
+    <script src="assets/jquery.js"></script>
+    <script src="assets/underbar.js"></script>
+    <script src="assets/odate.js"></script>
+    <script src="assets/data_generator.js"></script>
+    <script src="assets/twittler.js"></script>
   </head>
   <body>
-    <script>
-
-      $(document).ready(function(){
-        var $body = $('body');
-        $body.html('');
-
-        var index = streams.home.length - 1;
-        while(index >= 0){
-          var tweet = streams.home[index];
-          var $tweet = $('<div></div>');
-          $tweet.text('@' + tweet.user + ': ' + tweet.message);
-          $tweet.appendTo($body);
-          index -= 1;
-        }
-
-      });
-
-    </script>
+    <header>
+      <div class="container">
+        <h1><a href="#home">Twittler</a></h1>
+        <h2>An interpretation by Alex Mitchell</h2>
+      </div>
+    </header>
+    <div class="container">
+      <form action="#" id="write-tweet">
+        <input type="text" name="message" id="message" autocomplete="off" autofocus="true">
+        <button type="submit" class="post">Post</button>
+      </form>
+      <nav role="navigation">
+        <h2><a class="active" href="#home">View All</a></h2>
+        <ul id="users"></ul>
+      </nav>
+      <div class="content" role="main" id="view">
+        <h2 id="feed-title" class="frame-title">Your Feed</h2>
+        <div id="new-tweets"></div>
+        <ol id="tweet-stream" class="tweets"></ol>
+      </div>
+    </div>
   </body>
 </html>

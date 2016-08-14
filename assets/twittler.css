@@ -1,0 +1,223 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  font-size: 18px;
+  line-height: 1.4;
+  font-family: 'Fira Sans', sans-serif;
+  font-weight: 400;
+  color: #444;
+}
+
+.container {
+  width: auto;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+header {
+  margin: 0 0 1rem;
+  padding: 0.5rem 0;
+  color: #fff;
+  text-align: center;
+}
+
+header::after {
+  content: '.';
+  clear: both;
+  height: 0;
+  width: 0;
+  display: block;
+  visibility: hidden;
+}
+h1, h2, h3{
+  font-weight: 500;
+  margin: 0;
+  padding: 0;
+}
+
+header h1 {
+  line-height: 3rem;
+  font-size: 3rem;
+}
+
+header h2 {
+  line-height: 1rem;
+  font-size: 1rem;
+}
+
+ul, ol {
+list-style: none;
+margin: 0;
+padding: 0;
+}
+
+li {
+  margin: 0;
+  padding: 0;
+}
+
+form {
+  margin: 0 0 1rem;
+  padding: 0;
+  display: flex;
+  box-shadow: 0 4px 4px 0 rgba(0,0,0,0.2);
+}
+
+button, input {
+  box-sizing: border-box;
+  display: inline-block;
+  margin: 0;
+  padding: 0 0.5rem;
+  font-size: 2rem;
+  line-height: 3rem;
+  height: 3rem;
+  vertical-align: middle;
+  border: 1px solid;
+}
+
+button {
+  width: 100px;
+  border-radius: 0 4px 4px 0;
+  font-weight: 500;
+  color: #fff;
+  background-color: #f15f74;
+  border-color: #cc5062;
+}
+
+button:hover {
+  background-color: #ff7086;
+}
+
+input {
+  border-right-width: 0;
+  border-radius: 4px 0 0 4px;
+  border-color: #cc5062;
+  background-color: #fff;
+  flex-grow: 1;
+}
+
+button::-moz-focus-inner {
+  padding: 0;
+  border: 0;
+}
+
+a {
+  color: #f15f74;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #cc5062;
+}
+header a, header a:hover {
+  color: #fff;
+}
+nav li {
+  display: block;
+  position: relative;
+}
+
+nav li .count {
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  right: 0;
+  top: 0.05rem;
+  width: 1.75rem;
+  height: 1.3rem;
+  line-height: 1.4rem;
+  font-size: 0.75rem;
+  background-color: #f15f74;
+  color: #fff;
+  text-align: center;
+  border-radius: 1rem;
+}
+
+nav a {
+  position: relative;
+}
+
+nav a.active {
+  color: #cc5062;
+  font-weight: 500;
+}
+
+.tweets {
+  border: solid #eee;
+  border-width: 1px 1px 0;
+}
+
+.tweet {
+  display: none;
+  padding: 0.5rem 1rem;
+  border-bottom: 1px solid #eee;
+}
+
+.tweet .tweet-user {
+  font-size: 1rem;
+}
+
+.tweet .message {
+  font-size: 2rem;
+}
+
+.tweet .timestamp {
+  color: #999;
+  border-bottom: 1px dotted #999;
+}
+
+#unseen-count {
+  margin: 0.5rem auto;
+  padding: 0 0.5rem;
+  text-align: center;
+  font-size: 2rem;
+  line-height: 3rem;
+  color: #fff;
+  background-color: #f15f74;
+  border-radius: 1rem;
+  display: none;
+  cursor: pointer;
+}
+
+#unseen-count .text {
+
+}
+
+@media only screen and (min-width: 550px) {
+  header {
+    padding: 0;
+  }
+  header h1, header h2 {
+    line-height: 4rem;
+    height: 4rem;
+  }
+  header h1 {
+    float: left;
+  }
+  header h2 {
+    float: right;
+  }
+}
+@media only screen and (min-width: 800px) {
+  .container {
+    max-width: 1200px;
+  }
+
+  nav {
+    width: 240px;
+    float: left;
+  }
+
+  nav a{
+    display: block;
+  }
+
+  .content {
+    margin-left: 288px;
+  }
+
+}
+
+header {
+  background-color: #f15f74;
+}
