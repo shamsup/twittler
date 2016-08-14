@@ -7,7 +7,7 @@
 })();
 $(document).ready(function(){
   var $page = $('#view'); // logical controller of which feed we are viewing
-  var $tweetArea = $('#tweet-stream'); // the area to append tweets
+  var $twittleArea = $('#twittle-stream'); // the area to append twittles
   var $body = $('body'); // the body to handle delegated events
   var lastUpdatedIndex = -1; // start off with the first element of the `streams.home` array
   var $users = $('#users'); // the user list
@@ -29,17 +29,17 @@ $(document).ready(function(){
   });
 
   // Updates the counts for total unseen and unseen for each user
-  var updateTweetCounts = function(){
+  var updateTwittleCounts = function(){
     // which feed are we looking at
     var view = $page.data('view');
 
     // get the unseen counts for each user and a total (home)
     // {home: 15, mracus: 3, shawndrost: 7, sharksforcheap: 4, douglascalhoun: 1}
-    var userCounts = _.reduce(streams.unseen, function(counts, tweet){
-      if (counts[tweet.user] !== undefined){
-        counts[tweet.user] += 1;
+    var userCounts = _.reduce(streams.unseen, function(counts, twittle){
+      if (counts[twittle.user] !== undefined){
+        counts[twittle.user] += 1;
       } else {
-        counts[tweet.user] = 1;
+        counts[twittle.user] = 1;
       }
       counts.home += 1;
       return counts;
@@ -53,15 +53,15 @@ $(document).ready(function(){
         $viewUnseenButton = $(
           '<div id="unseen-count">'
           +'<span class="count"/>'
-          +'<span class="text"> new tweet' + ((userCounts[view] > 1) ? 's' : '') + '!</span>'
+          +'<span class="text"> new twittle' + ((userCounts[view] > 1) ? 's' : '') + '!</span>'
           +'</div>');
-        $('#new-tweets').append($viewUnseenButton);
+        $('#new-twittles').append($viewUnseenButton);
         $viewUnseenButton.slideDown(200);
       }
       var $count = $('.count', $viewUnseenButton);
       if ($count.text() != userCounts[view]) {
         if ($count.text() === '1'){
-          $('.text', $viewUnseenButton).text(' new tweets!');
+          $('.text', $viewUnseenButton).text(' new twittles!');
         }
         $count.text(userCounts[view])
           .css('opacity', 0)
@@ -86,60 +86,60 @@ $(document).ready(function(){
     });
   };
 
-  var renderTweets = function(tweets){
-    _.each(tweets, function(tweet){
-      var $newTweet = $('<li class="tweet" />');
+  var renderTwittles = function(twittles){
+    _.each(twittles, function(twittle){
+      var $newTwittle = $('<li class="twittle" />');
       var $header = $(
-        '<h2 class="tweet-user">'
-        + '<a href="#' + tweet.user +'">@' + tweet.user + '</a>'
+        '<h2 class="twittle-user">'
+        + '<a href="#' + twittle.user +'">@' + twittle.user + '</a>'
         + '</h2>'
       );
-      var $message = $('<div class="message">' + tweet.message + '</div>');
+      var $message = $('<div class="message">' + twittle.message + '</div>');
       var $timestamp = $(
         '<time class="timestamp" data-o-component="o-date" datetime="'
-         + tweet.created_at.toISOString() + '">'
-         + ODate.format(tweet.created_at,'datetime')
+         + twittle.created_at.toISOString() + '">'
+         + ODate.format(twittle.created_at,'datetime')
          + '</time>');
-      $newTweet.append($header, $message, $timestamp);
-      $tweetArea.prepend($newTweet);
-      ODate.init($newTweet[0]);
+      $newTwittle.append($header, $message, $timestamp);
+      $twittleArea.prepend($newTwittle);
+      ODate.init($newTwittle[0]);
     });
 
-    $('.tweet', $tweetArea).slideDown(200);
+    $('.twittle', $twittleArea).slideDown(200);
   };
-  var getNewTweets = function(){
+  var getNewTwittles = function(){
     var latest = streams.home.slice(lastUpdatedIndex+1);
     lastUpdatedIndex = streams.home.length-1;
 
-    _.each(latest, function(tweet){
-      streams.unseen.push(tweet);
+    _.each(latest, function(twittle){
+      streams.unseen.push(twittle);
     });
 
-    updateTweetCounts();
+    updateTwittleCounts();
   };
 
-  var renderNewTweets = function(){
+  var renderNewTwittles = function(){
     var filter = $page.data('view');
 
-    var tweets = _.filterIntoNew(streams.unseen, function(tweet){
-      return (filter === 'home' || filter === tweet.user);
+    var twittles = _.filterIntoNew(streams.unseen, function(twittle){
+      return (filter === 'home' || filter === twittle.user);
     });
 
-    _.each(tweets, function(tweet) {
-      streams.seen.push(tweet);
+    _.each(twittles, function(twittle) {
+      streams.seen.push(twittle);
     });
 
-    updateTweetCounts();
-    renderTweets(tweets);
+    updateTwittleCounts();
+    renderTwittles(twittles);
   };
 
   var changeView = function() {
-    $tweetArea.empty();
+    $twittleArea.empty();
     var view = $page.data('view');
     var seen, unseen;
 
-    var filterTweetsByView = function(tweet) {
-      return tweet.user === view;
+    var filterTwittlesByView = function(twittle) {
+      return twittle.user === view;
     };
 
     if (view === 'home') {
@@ -147,23 +147,23 @@ $(document).ready(function(){
       unseen = [];
       streams.unseen = [];
     } else {
-      seen = _.filter(streams.seen, filterTweetsByView);
-      // additionally removes those tweets from the `streams.unseen` array
+      seen = _.filter(streams.seen, filterTwittlesByView);
+      // additionally removes those twittles from the `streams.unseen` array
       // since we'll be viewing them.
-      unseen = _.filterIntoNew(streams.unseen, filterTweetsByView);
+      unseen = _.filterIntoNew(streams.unseen, filterTwittlesByView);
     }
 
     $('#feed-title').text(
       (view === 'home') ? 'Your Feed' :
-      (view === visitor) ? 'Your tweets' :
-      'Tweets by @' + view
+      (view === visitor) ? 'Your twittles' :
+      'Twittles by @' + view
     )
 
-    updateTweetCounts();
-    renderTweets(seen);
-    renderTweets(unseen);
-    _.each(unseen, function(tweet){
-      streams.seen.push(tweet);
+    updateTwittleCounts();
+    renderTwittles(seen);
+    renderTwittles(unseen);
+    _.each(unseen, function(twittle){
+      streams.seen.push(twittle);
     });
   };
 
@@ -172,17 +172,17 @@ $(document).ready(function(){
     changeView();
   });
 
-  $body.on('click', '#unseen-count', renderNewTweets);
+  $body.on('click', '#unseen-count', renderNewTwittles);
 
-  $('#write-tweet').submit(function(e){
+  $('#write-twittle').submit(function(e){
     e.preventDefault();
     var message = $('#message').val();
 
     if (message) {
-      writeTweet(message);
+      writeTwittle(message);
       $('#message').val('');
-      getNewTweets();
-      renderNewTweets();
+      getNewTwittles();
+      renderNewTwittles();
     }
   });
 
@@ -194,14 +194,14 @@ $(document).ready(function(){
     $page.data('view', hash);
   })();
 
-  getNewTweets();
-  renderNewTweets();
+  getNewTwittles();
+  renderNewTwittles();
 
 
-  setInterval(getNewTweets, 5000);
+  setInterval(getNewTwittles, 5000);
 
   // fire ODate formatting
   document.dispatchEvent(new CustomEvent('o.DOMContentLoaded'));
-  //setInterval(renderNewTweets, 5000);
-  //streams.updateTimer = setInterval(renderNewTweets, 10000);
+  //setInterval(renderNewTwittles, 5000);
+  //streams.updateTimer = setInterval(renderNewTwittles, 10000);
 });

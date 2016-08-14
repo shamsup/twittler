@@ -1,5 +1,5 @@
 /*
- * NOTE: This file generates fake tweet data, and is not intended to be part of your implementation.
+ * NOTE: This file generates fake twittle data, and is not intended to be part of your implementation.
  * You can safely leave this file untouched, and confine your changes to index.html.
  */
 
@@ -13,11 +13,11 @@ streams.users.mracus = [];
 streams.users.douglascalhoun = [];
 window.users = Object.keys(streams.users);
 
-// utility function for adding tweets to our data structures
-var addTweet = function(newTweet){
-  var username = newTweet.user;
-  streams.users[username].push(newTweet);
-  streams.home.push(newTweet);
+// utility function for adding twittles to our data structures
+var addTwittle = function(newTwittle){
+  var username = newTwittle.user;
+  streams.users[username].push(newTwittle);
+  streams.home.push(newTwittle);
 };
 
 // utility function
@@ -26,7 +26,7 @@ var randomElement = function(array){
   return array[randomIndex];
 };
 
-// random tweet generator
+// random twittle generator
 var opening = ['just', '', '', '', '', 'ask me how i', 'completely', 'nearly', 'productively', 'efficiently', 'the president', 'that wizard', 'a ninja'];
 var verbs = ['deployed', 'got', 'developed', 'built', 'invented', 'experienced', 'fought off', 'enjoyed', 'developed', 'consumed', 'debunked', 'made', 'wrote', 'saw'];
 var objects = ['my', 'your', 'the', 'a', 'my', 'an entire', 'this', 'that', 'the', 'the big', 'a new form of'];
@@ -37,34 +37,34 @@ var randomMessage = function(){
   return [randomElement(opening), randomElement(verbs), randomElement(objects), randomElement(nouns), randomElement(tags)].join(' ');
 };
 
-// generate random tweets on a random schedule
-var generateRandomTweet = function(){
-  var tweet = {};
-  tweet.user = randomElement(users);
-  tweet.message = randomMessage();
-  tweet.created_at = new Date();
-  addTweet(tweet);
+// generate random twittles on a random schedule
+var generateRandomTwittle = function(){
+  var twittle = {};
+  twittle.user = randomElement(users);
+  twittle.message = randomMessage();
+  twittle.created_at = new Date();
+  addTwittle(twittle);
 };
 
 for(var i = 0; i < 10; i++){
-  generateRandomTweet();
+  generateRandomTwittle();
 }
 
-var scheduleNextTweet = function(){
-  generateRandomTweet();
-  setTimeout(scheduleNextTweet, 1000 + Math.random() * 2000);
+var scheduleNextTwittle = function(){
+  generateRandomTwittle();
+  setTimeout(scheduleNextTwittle, 1000 + Math.random() * 2000);
 };
-scheduleNextTweet();
+scheduleNextTwittle();
 
-// utility function for letting students add "write a tweet" functionality
+// utility function for letting students add "write a twittle" functionality
 // (note: not used by the rest of this file.)
-var writeTweet = function(message){
+var writeTwittle = function(message){
   if(!visitor){
     throw new Error('set the global visitor property!');
   }
-  var tweet = {};
-  tweet.user = visitor;
-  tweet.message = message;
-  tweet.created_at = new Date();
-  addTweet(tweet);
+  var twittle = {};
+  twittle.user = visitor;
+  twittle.message = message;
+  twittle.created_at = new Date();
+  addTwittle(twittle);
 };

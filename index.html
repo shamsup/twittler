@@ -4,7 +4,9 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="stylesheet" href="assets/twittler.css" type="text/css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fira+Sans:400,500" type="text/css">
+    <link rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Fira+Sans:400,500"
+      type="text/css">
     <script src="assets/jquery.js"></script>
     <script src="assets/underbar.js"></script>
     <script src="assets/odate.js"></script>
@@ -19,8 +21,12 @@
       </div>
     </header>
     <div class="container">
-      <form action="#" id="write-tweet">
-        <input type="text" name="message" id="message" autocomplete="off" autofocus="true">
+      <form action="#" id="write-twittle">
+        <input
+          type="text" name="message" id="message"
+          placeholder="twittle something!"
+          autocomplete="off" autofocus="true"
+        >
         <button type="submit" class="post">Post</button>
       </form>
       <nav role="navigation">
@@ -29,8 +35,8 @@
       </nav>
       <div class="content" role="main" id="view">
         <h2 id="feed-title" class="frame-title">Your Feed</h2>
-        <div id="new-tweets"></div>
-        <ol id="tweet-stream" class="tweets"></ol>
+        <div id="new-twittles"></div>
+        <ol id="twittle-stream" class="twittles"></ol>
       </div>
     </div>
   </body>

@@ -19,6 +19,7 @@ header {
   padding: 0.5rem 0;
   color: #fff;
   text-align: center;
+  background-color: #f15f74;
 }
 
 header::after {
@@ -29,6 +30,7 @@ header::after {
   display: block;
   visibility: hidden;
 }
+
 h1, h2, h3{
   font-weight: 500;
   margin: 0;
@@ -59,13 +61,13 @@ li {
 form {
   margin: 0 0 1rem;
   padding: 0;
-  display: flex;
   box-shadow: 0 4px 4px 0 rgba(0,0,0,0.2);
 }
 
-button, input {
+input, button {
   box-sizing: border-box;
-  display: inline-block;
+  display: block;
+  width:100%;
   margin: 0;
   padding: 0 0.5rem;
   font-size: 2rem;
@@ -75,25 +77,23 @@ button, input {
   border: 1px solid;
 }
 
+input {
+  border-radius: 4px 4px 0 0;
+  border-color: #cc5062;
+  background-color: #fff;
+}
+
 button {
-  width: 100px;
-  border-radius: 0 4px 4px 0;
   font-weight: 500;
   color: #fff;
-  background-color: #f15f74;
+  border-radius: 0 0 4px 4px;
   border-color: #cc5062;
+  background-color: #f15f74;
+  border-top-width:0;
 }
 
 button:hover {
   background-color: #ff7086;
-}
-
-input {
-  border-right-width: 0;
-  border-radius: 4px 0 0 4px;
-  border-color: #cc5062;
-  background-color: #fff;
-  flex-grow: 1;
 }
 
 button::-moz-focus-inner {
@@ -142,26 +142,27 @@ nav a.active {
   font-weight: 500;
 }
 
-.tweets {
+.twittles {
   border: solid #eee;
   border-width: 1px 1px 0;
 }
 
-.tweet {
+.twittle {
   display: none;
   padding: 0.5rem 1rem;
   border-bottom: 1px solid #eee;
 }
 
-.tweet .tweet-user {
+.twittle .twittle-user {
   font-size: 1rem;
 }
 
-.tweet .message {
+.twittle .message {
   font-size: 2rem;
+  line-height: 1;
 }
 
-.tweet .timestamp {
+.twittle .timestamp {
   color: #999;
   border-bottom: 1px dotted #999;
 }
@@ -179,10 +180,6 @@ nav a.active {
   cursor: pointer;
 }
 
-#unseen-count .text {
-
-}
-
 @media only screen and (min-width: 550px) {
   header {
     padding: 0;
@@ -198,6 +195,7 @@ nav a.active {
     float: right;
   }
 }
+
 @media only screen and (min-width: 800px) {
   .container {
     max-width: 1200px;
@@ -216,8 +214,24 @@ nav a.active {
     margin-left: 288px;
   }
 
-}
+  form {
+    display:flex;
+  }
 
-header {
-  background-color: #f15f74;
+  button, input {
+    display:inline-block;
+    margin-bottom: 0;
+  }
+
+  input {
+    width:auto;
+    flex-grow: 1;
+    border-radius: 4px 0 0 4px;
+    border-right-width: 0;
+  }
+
+  button {
+    width:100px;
+    border-radius: 0 4px 4px 0;
+  }
 }
